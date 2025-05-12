@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Benjamin's E-Commerce</title>
+</head>
+<body>
+    <div th:replace="~{layout/main :: body(content=~{::main}, title='Home - Benjamin\'s E-Commerce')}">
+        <main>
+            <!-- Hero Banner -->
+            <div class="jumbotron py-5 bg-light">
+                <div class="container">
+                    <h1 class="display-4">Welcome to Benjamin's E-Commerce</h1>
+                    <p class="lead">Discover the best products at competitive prices.</p>
+                    <hr class="my-4">
+                    <p>Browse our wide selection of products or search for something specific.</p>
+                    <a class="btn btn-primary btn-lg" th:href="@{/products}" role="button">Shop Now</a>
+                </div>
+            </div>
+            
+            <!-- Featured Products -->
+            <div class="container my-5">
+                <h2 class="text-center mb-4">Featured Products</h2>
+                
+                <div class="row" th:if="${not #lists.isEmpty(products)}">
+                    <div class="col-md-4 mb-4" th:each="product : ${products}">
+                        <div class="card h-100">
+                            <img th:if="${product.imageUrl}" th:src="${product.imageUrl}" class="card-img-top" alt="Product Image">
+                            <img th:unless="${product.imageUrl}" src="/images/placeholder.png" class="card-img-top" alt="Product Placeholder">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${product.name}">Product Name</h5>
+                                <p class="card-text" th:text="${#strings.abbreviate(product.description, 100)}">
+                                    Product description shortened to 100 characters...
+                                </p>
+                                <p class="card-text text-primary fw-bold" th:text="${'$' + product.price}">$19.99</p>
+                                <a th:href="@{/products/{id}(id=${product.id})}" class="btn btn-outline-primary">View Details</a>
+                                
+                                <!-- Add to Cart Form -->
+                                <form th:action="@{/cart/add}" method="post" class="d-inline">
+                                    <input type="hidden" name="productId" th:value="${product.id}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center" th:if="${#lists.isEmpty(products)}">
+                    <p>No products available at the moment.</p>
+                </div>
+            </div>
+            
+            <!-- Categories -->
+            <div class="container my-5">
+                <h2 class="text-center mb-4">Shop by Category</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Electronics</h5>
+                                <p class="card-text">Browse our latest electronic products.</p>
+                                <a th:href="@{/products/category/electronics}" class="btn btn-outline-primary">View Electronics</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Clothing</h5>
+                                <p class="card-text">Check out our fashion collection.</p>
+                                <a th:href="@{/products/category/clothing}" class="btn btn-outline-primary">View Clothing</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Home & Garden</h5>
+                                <p class="card-text">Beautify your living space.</p>
+                                <a th:href="@{/products/category/home}" class="btn btn-outline-primary">View Home & Garden</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 

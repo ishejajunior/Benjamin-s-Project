@@ -1,0 +1,161 @@
+1. Project Initialization Prompt
+Create a new Spring Boot project with the following dependencies:
+- Spring Web
+- Spring Data JPA
+- Spring Security
+- Thymeleaf
+- MySQL Driver
+- Validation
+- Lombok (optional but recommended)
+
+Project structure should follow:
+- src/main/java: Java source code
+- src/main/resources: 
+  - application.properties
+  - templates (Thymeleaf views)
+  - static (CSS, JS, images)
+
+Ensure Maven or Gradle project setup with appropriate dependency management.
+2. Database Configuration Prompt
+Configure MySQL database connection in application.properties:
+- Create a database named 'ecommerce_db'
+- Set up connection properties
+- Configure Hibernate DDL auto-create mode
+- Set up connection pooling
+- Configure JPA properties for logging and dialect
+
+Implement database schema design with entities:
+1. User Entity
+   - id (Primary Key)
+   - username
+   - email
+   - password (encoded)
+   - roles
+   - contact information
+
+2. Product Entity
+   - id (Primary Key)
+   - name
+   - description
+   - price
+   - stock quantity
+   - category
+   - image URL
+
+3. Order Entity
+   - id (Primary Key)
+   - user (Many-to-One relationship)
+   - orderDate
+   - total amount
+   - status (PENDING, PROCESSED, SHIPPED, DELIVERED)
+   - orderItems (One-to-Many relationship)
+
+4. OrderItem Entity
+   - id (Primary Key)
+   - product (Many-to-One relationship)
+   - quantity
+   - subtotal
+3. Security Configuration Prompt
+Implement Spring Security configuration:
+- Configure authentication manager
+- Set up in-memory or database-backed user authentication
+- Implement password encoding (BCrypt)
+- Define role-based access control
+  - ROLE_USER: Can browse, add to cart, place orders
+  - ROLE_ADMIN: Can manage products, view all orders
+
+Create authentication endpoints:
+- /login
+- /signup
+- /logout
+- /admin/dashboard (admin-only access)
+
+Implement JWT or session-based authentication
+4. Repository and Service Layer Prompt
+Create repository interfaces using Spring Data JPA:
+- UserRepository
+- ProductRepository
+- OrderRepository
+- OrderItemRepository
+
+Develop service classes with business logic:
+- UserService: Registration, authentication
+- ProductService: CRUD operations
+- OrderService: Order placement, tracking
+- CartService: Manage shopping cart functionality
+
+Implement:
+- Input validation
+- Error handling
+- Transactional management
+5. Controller and API Endpoints Prompt
+Develop RESTful controllers:
+1. UserController
+   - POST /signup
+   - POST /login
+   - GET /profile
+
+2. ProductController
+   - GET /products
+   - GET /products/{id}
+   - POST /admin/products (admin only)
+   - PUT /admin/products/{id}
+   - DELETE /admin/products/{id}
+
+3. OrderController
+   - POST /orders
+   - GET /orders
+   - GET /orders/{id}
+   - PUT /admin/orders/{id}/status
+
+4. CartController
+   - POST /cart/add
+   - DELETE /cart/remove
+   - GET /cart
+   - POST /cart/checkout
+6. Thymeleaf Frontend Prompt
+Create Thymeleaf templates:
+1. Home Page (/index.html)
+   - Display featured products
+   - Navigation menu
+   - Search functionality
+
+2. Product Pages
+   - Product listing
+   - Product details
+   - Category filtering
+
+3. Authentication Pages
+   - Login form
+   - Registration form
+   - Profile page
+
+4. Cart and Checkout
+   - Cart view
+   - Checkout process
+   - Order confirmation
+
+5. Admin Pages
+   - Product management
+   - Order management
+   - User management
+
+Integrate Bootstrap or Material Design for responsive layout
+7. Additional Configuration and Best Practices
+- Implement proper logging (SLF4J)
+- Add comprehensive error handling
+- Create custom exception classes
+- Implement input validation
+- Add pagination for product listings
+- Implement basic caching mechanisms
+- Write unit and integration tests
+8. Deployment and Documentation
+- Create README.md with:
+  - Project overview
+  - Technology stack
+  - Setup instructions
+  - Environment configuration
+  - How to run the application
+
+- Dockerize the application (optional)
+- Prepare deployment scripts

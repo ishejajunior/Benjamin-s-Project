@@ -1,0 +1,94 @@
+/* Main Styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+}
+
+/* Product Cards */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Hero Banner */
+.jumbotron {
+    background-color: #f8f9fa;
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+/* Cart Quantity Control */
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-control button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-control input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+/* Admin Panel */
+.admin-dashboard .card {
+    transition: transform 0.2s;
+}
+
+.admin-dashboard .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Detail Page */
+.product-image {
+    max-height: 400px;
+    object-fit: contain;
+}
+
+/* Order Status Badges */
+.badge-pending {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.badge-processed {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.badge-shipped {
+    background-color: #6610f2;
+    color: white;
+}
+
+.badge-delivered {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .card-img-top {
+        height: 150px;
+    }
+} 

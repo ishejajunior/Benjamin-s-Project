@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+</head>
+<body>
+    <div th:replace="~{layout/main :: body(content=~{::main}, title='Error')}">
+        <main>
+            <div class="container text-center py-5">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <h1 class="display-1" th:text="${statusCode ?: '500'}">500</h1>
+                        <h2 class="display-4 mb-4">Oops! Something went wrong</h2>
+                        <p class="lead mb-5" th:text="${errorMessage ?: 'An unexpected error occurred. Please try again later.'}">
+                            An unexpected error occurred. Please try again later.
+                        </p>
+                        <a href="/" th:href="@{/}" class="btn btn-primary btn-lg">Go Home</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 
